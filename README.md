@@ -9,8 +9,8 @@ mongoDB service running on default port.
 Useage:
 for each package:
 
-  npm install
+  \tnpm install
   
-  npm start
+  \tnpm start
   
 visit your chat app in local port 3000.
