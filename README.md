@@ -15,4 +15,3 @@ for each package:
   
 visit your chat app in local port 3000.
 
-test readme
