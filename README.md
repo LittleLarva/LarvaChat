@@ -13,5 +13,5 @@ for each package:
   
       npm start
   
-visit your chat app in local port 3001.
 
+visit your chat app in local port 3001.
