@@ -17,7 +17,7 @@ import logo from "../components/logo/logo";
 
 const initUser = {
     username: '', //用户名
-    type: '', //用户类型 dashen/laoban
+    type: '', //用户类型 student/teacher
     msg: '', //错误提示信息
     redirectTo: '' //需要自动重定向的路由路径
 }

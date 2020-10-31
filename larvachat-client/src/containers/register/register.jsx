@@ -22,7 +22,7 @@ class Register extends Component{
         username: '', //用户名
         password: '', //密码
         password2: '', //确认密码
-        type: 'laoban', //用户类型名称 dashen/laoban
+        type: 'teacher', //用户类型名称 student/teacher
     }
     register = () => {
         this.props.register(this.state)
@@ -49,7 +49,7 @@ class Register extends Component{
         }
         return(
             <div>
-                <NavBar>硅&nbsp;谷&nbsp;直&nbsp;聘</NavBar>
+                <NavBar>校&nbsp;园&nbsp;实&nbsp;习&nbsp;招&nbsp;聘</NavBar>
                 <Logo/>
                 <WingBlank>
                     <List>
@@ -63,9 +63,9 @@ class Register extends Component{
                         <ListItem>
                             <span>用户类型：</span>
                             &nbsp;&nbsp;&nbsp;
-                            <Radio checked={type==='dashen'} onChange={() => this.handleChange('type', 'dashen')}>大神</Radio>
+                            <Radio checked={type==='student'} onChange={() => this.handleChange('type', 'student')}>学生</Radio>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <Radio checked={type==='laoban'} onChange={() => this.handleChange('type', 'laoban')}>老板</Radio>
+                            <Radio checked={type==='teacher'} onChange={() => this.handleChange('type', 'teacher')}>老师</Radio>
                         </ListItem>
                         <WhiteSpace/>
                         <Button type='primary' onClick={this.register}>注&nbsp;&nbsp;&nbsp;册</Button>

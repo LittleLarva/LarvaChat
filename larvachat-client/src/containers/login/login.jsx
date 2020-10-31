@@ -48,7 +48,7 @@ class Login extends Component{
         }
         return(
             <div>
-                <NavBar>硅&nbsp;谷&nbsp;直&nbsp;聘</NavBar>
+                <NavBar>校&nbsp;园&nbsp;实&nbsp;习&nbsp;招&nbsp;聘</NavBar>
                 <Logo/>
                 <WingBlank>
                     <List>

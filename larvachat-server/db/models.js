@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost:27017/larvachat')
 const conn = mongoose.connection
 // 1.4.绑定连接完成的监听(用来提示连接成功)
 conn.on('connected', () => {
-    console.log('db connect success!')
+    console.log('db connected successfully!')
 })
 
 // 2.定义出对应特定集合的Model并向外暴露
@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
     header: {type: String}, //头像名称
     post: {type: String}, //职位
     info: {type: String}, //个人或职位简介
-    company: {type: String}, //公司名称
+    laboratory: {type: String}, //公司名称
     salary: {type: String} //工资
 })
 // 2.2.定义Model(与集合对应,可以操作集合)

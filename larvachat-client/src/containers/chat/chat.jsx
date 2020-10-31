@@ -4,7 +4,10 @@
 import React, {Component} from 'react'
 import {NavBar, List, InputItem, Grid, Icon} from 'antd-mobile'
 import {connect} from 'react-redux'
+import QueueAnim from 'rc-queue-anim'
+
 import {sendMsg, readMsg} from '../../redux/actions'
+import {reqChatMsgList} from "../../api";
 
 const Item = List.Item
 
@@ -91,6 +94,7 @@ class Chat extends Component {
         const msgs = chatMsgs.filter(msg => msg.chat_id === chatId)
 
         //得到目标用户的header图片对象
+
         const targetHeader = users[targetId].header
         const targetIcon = targetHeader ? require(`../../assets/images/${targetHeader}.png`) : null
 
@@ -104,30 +108,33 @@ class Chat extends Component {
                     {users[targetId].username}
                 </NavBar>
                 <List style={{marginTop: 50, marginBottom: 50}}>
-                    {
-                        msgs.map(msg => {
-                            if (targetId === msg.from){//对方发给我的
-                                return (
-                                    <Item
-                                        key={msg._id}
-                                        thumb={targetIcon}
-                                    >
-                                        {msg.content}
-                                    </Item>
-                                )
-                            }else{//我发给对方的
-                                return (
-                                    <Item
-                                        key={msg._id}
-                                        className='chat-me'
-                                        extra='我'
-                                    >
-                                        {msg.content}
-                                    </Item>
-                                )
-                            }
-                        })
-                    }
+                    <QueueAnim type='alpha' delay={100}>
+                        {
+                            msgs.map(msg => {
+                                if (targetId === msg.from){//对方发给我的
+                                    return (
+                                        <Item
+                                            key={msg._id}
+                                            thumb={targetIcon}
+                                        >
+                                            {msg.content}
+                                        </Item>
+                                    )
+                                }else{//我发给对方的
+                                    return (
+                                        <Item
+                                            key={msg._id}
+                                            className='chat-me'
+                                            extra='我'
+                                        >
+                                            {msg.content}
+                                        </Item>
+                                    )
+                                }
+                            })
+                        }
+                    </QueueAnim>
+
                 </List>
 
                 <div className='am-tab-bar'>
@@ -138,7 +145,12 @@ class Chat extends Component {
                         onFocus={() => this.setState({isShow: false})}
                         extra={
                             <span>
-                                <span onClick={this.toggleShow} style={{marginRight:5}}>🙂</span>
+                                <span
+                                    onClick={this.toggleShow}
+                                    style={{marginRight:5}}
+                                    className='size'
+                                >
+                                    🙂</span>
                                 <span onClick={this.handleSend}>发送</span>
                             </span>
                         }

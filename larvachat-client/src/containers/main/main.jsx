@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 import Cookies from 'js-cookie' //可以操作前端cookie的对象 set()/get()/remove()
 import {Navbar} from 'antd-mobile'
 
-import LaobanInfo from "../laoban-info/laoban-info";
-import DashenInfo from "../dashen-info/dashen-info";
-import Dashen from "../dashen/dashen";
-import Laoban from "../laoban/laoban";
+import TeacherInfo from "../teacher-info/teacher-info";
+import StudentInfo from "../student-info/student-info";
+import Student from "../student/student";
+import Teacher from "../teacher/teacher";
 import Message from "../message/message";
 import Personal from "../personal/personal";
 import NotFound from "../../components/not-found/not-found";
@@ -24,18 +24,18 @@ class Main extends Component{
     //给组件对象添加属性
     navList = [
         {
-            path: '/laoban', //路由路径
-            component: Laoban,
-            title: '大神列表',
-            icon: 'dashen',
-            text: '大神',
+            path: '/teacher', //路由路径
+            component: Teacher,
+            title: '学生列表',
+            icon: 'student',
+            text: '学生',
         },
         {
-            path: '/dashen', //路由路径
-            component: Dashen,
-            title: '老板列表',
-            icon: 'laoban',
-            text: '老板',
+            path: '/student', //路由路径
+            component: Student,
+            title: '老师列表',
+            icon: 'teacher',
+            text: '老师',
         },
         {   path: '/message', //路由路径
             component: Message,
@@ -85,13 +85,14 @@ class Main extends Component{
             }
         }
 
+
         const {navList} = this
         const path = this.props.location.pathname
         const currentNav = navList.find(nav => nav.path === path)//得到当前的nav，可能没有
 
         if(currentNav){
             //决定哪个路由需要隐藏
-            if (user.type === 'laoban'){
+            if (user.type === 'teacher'){
                 //隐藏数组的第二个
                 navList[1].hide = true
             }else{
@@ -107,8 +108,8 @@ class Main extends Component{
                     {
                         navList.map((nav,index) => <Route path={nav.path} component={nav.component} key={index}/>)
                     }
-                    <Route path='/laobaninfo' component={LaobanInfo}/>
-                    <Route path='/dasheninfo' component={DashenInfo}/>
+                    <Route path='/teacherinfo' component={TeacherInfo}/>
+                    <Route path='/studentinfo' component={StudentInfo}/>
                     <Route path='/chat/:userid' component={Chat}/>
 
                     <Route component={NotFound}/>

@@ -5,6 +5,8 @@ import React, {Component} from "react";
 import {connect} from 'react-redux'
 import {List, Badge} from 'antd-mobile'
 
+import {getUser} from '../../redux/actions'
+
 const Item = List.Item
 const Brief = Item.Brief
 
@@ -14,6 +16,7 @@ const Brief = Item.Brief
 2. 得到所有lastMsg的数组
 3. 对数组进行排序（按create_time降序）
  */
+
 function getLastMsgs(chatMsgs, userid) {
     // 1. 找出每个聊天的lastMsg，并用一个对象容器来保存{chat_id: lastMsg}
     const lastMsgObjs = {}
@@ -57,6 +60,12 @@ function getLastMsgs(chatMsgs, userid) {
 }
 
 class Message extends Component {
+
+    componentDidMount() {
+        //更新users状态
+        this.props.getUser()
+    }
+
     render() {
         const {user} = this.props
         const {users, chatMsgs} = this.props.chat
@@ -72,6 +81,7 @@ class Message extends Component {
                         const targetUserId = msg.to === user._id ? msg.from : msg.to
                         //得到目标用户的信息
                         const targetUser = users[targetUserId]
+                        if(!targetUser) return null
                         return(
                             <Item
                                 key={msg._id}
@@ -93,5 +103,5 @@ class Message extends Component {
 
 export default connect(
     state => ({user: state.user, chat: state.chat}),
-    {}
+    {getUser}
 )(Message)
